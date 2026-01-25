@@ -241,4 +241,28 @@
 
     function resetKey() { localStorage.removeItem('groq_key'); alert("AI Key Cleared."); }
 
+    // INITIALIZATION
+    document.body.style.backgroundImage = `url('${backgrounds[Math.floor(Math.random()*backgrounds.length)]}')`;
+    document.getElementById('portrait-img').style.backgroundImage = `url('${portraits[Math.floor(Math.random()*portraits.length)]}')`;
     
+    const quotes = ["Protect your peace.", "Legends never die.", "it's never to late to start", "Too early to quit", "it will get better", "Don't quit now", "Just try again", "Stay focused.", "Real over fake.", "Chase the bag, not the hype."];
+    const emojiRot = ["🧊","❄️","🫧","❤️","🍃","⚒️","🍂","😅"];
+    const storedDate = localStorage.getItem('stud_d');
+    
+    if(storedDate !== new Date().toDateString()){
+        localStorage.setItem('stud_d', new Date().toDateString());
+        localStorage.setItem('stud_q', quotes[Math.floor(Math.random()*quotes.length)]);
+        localStorage.setItem('stud_e', emojiRot[Math.floor(Math.random()*emojiRot.length)]);
+        localStorage.setItem('stud_i', backgrounds[Math.floor(Math.random()*backgrounds.length)]);
+    }
+    
+    document.getElementById('q-text').innerText = localStorage.getItem('stud_q');
+    document.getElementById('q-emoji').innerText = localStorage.getItem('stud_e');
+    document.getElementById('quote-card').style.backgroundImage = `url('${localStorage.getItem('stud_i')}')`;
+
+    updateUI();
+    getWeather();
+    setInterval(updateUI, 1000);
+</script>
+</body>
+</html>
